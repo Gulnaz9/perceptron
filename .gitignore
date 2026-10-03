@@ -1,0 +1,26 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Данные, которые генерируются скриптами
+data_training.csv
+data_valid.csv
+normalization_params.csv
+saved_model.npz
+
+# Графики (перегенерируются скриптом)
+plots/
+
+# VS Code
+.vscode/
+
+# ОС
+.DS_Store
+Thumbs.db
