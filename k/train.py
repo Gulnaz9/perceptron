@@ -30,6 +30,13 @@ class NeuralNetwork:
             arrays[f"W_{i}"] = layer.W
             arrays[f"b_{i}"] = layer.b
         np.savez(path, **arrays)
+        
+    def load(self, path):
+        #Загружает W и b каждого слоя из .npz файла
+        data = np.load(path)
+        for i, layer in enumerate(self.layers):
+            layer.W = data[f"W_{i}"]
+            layer.b = data[f"b_{i}"]
 
 
 def compute_loss(network, X, y):
