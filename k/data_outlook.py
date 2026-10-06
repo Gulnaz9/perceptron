@@ -21,10 +21,6 @@ print(df.isnull().sum().sum())
 print("\nСтатистика признаков:")
 print(df.describe().T)
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
 # --------
 
 os.makedirs("../plots", exist_ok=True)
@@ -55,19 +51,6 @@ plt.tight_layout()
 plt.savefig("../plots/features_hist.png", dpi=120)
 plt.close()
 
-# Boxplot: как признак разделяет классы 
-features_to_show = ["feature_1", "feature_3", "feature_4", "feature_24",
-                    "feature_26", "feature_27"]
-fig, axes = plt.subplots(2, 3, figsize=(14, 8))
-for i, ax in enumerate(axes.flat):
-    col = features_to_show[i]
-    data = [df[df.diagnosis == "B"][col], df[df.diagnosis == "M"][col]]
-    ax.boxplot(data, tick_labels=["B", "M"])
-    ax.set_title(col)
-plt.suptitle("Boxplot: разделимость классов по признакам", fontsize=14)
-plt.tight_layout()
-plt.savefig("../plots/features_boxplot.png", dpi=120)
-plt.close()
 
 # Heatmap корреляций 
 numeric_df = df.drop(columns=["id", "diagnosis"])
