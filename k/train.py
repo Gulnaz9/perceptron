@@ -70,13 +70,13 @@ def train_model(network, X_train, y_train, X_valid, y_valid,
             X_batch = X_train[batch_idx]
             y_batch = y_train[batch_idx]
 
-            # 1. forward
+            # forward
             y_pred = network.forward(X_batch)
-            # 2. градиент на выходе
+            # градиент на выходе
             dL_dz = cross_entropy_grad(y_pred, y_batch)
-            # 3. backward
+            # backward
             network.backward(dL_dz)
-            # 4. обновить веса
+            # обновить веса
             network.update(lr)
 
         # Логирование
@@ -123,7 +123,7 @@ def plot_history(history, save_path="../plots/learning_curves.png"):
 
 
 def main():
-    # ---- Данные ----
+    
     train_df = pd.read_csv("../data_training.csv")
     valid_df = pd.read_csv("../data_valid.csv")
 
@@ -138,7 +138,6 @@ def main():
     print(f"x_train shape : {X_train.shape}")
     print(f"x_valid shape : {X_valid.shape}")
 
-    # ---- Сеть ----
     network = NeuralNetwork([
         DenseLayer(30, 24, activation="sigmoid", seed=42),
         DenseLayer(24, 24, activation="sigmoid", seed=42),
@@ -146,18 +145,15 @@ def main():
         DenseLayer(24, 2,  activation=None,      seed=42),
     ])
 
-    # ---- Обучение ----
     history = train_model(
         network,
         X_train, y_train, X_valid, y_valid,
         epochs=70, batch_size=8, lr=0.0314, seed=42,
     )
 
-    # ---- Сохранение модели ----
     network.save("../saved_model.npz")
     print("Модель сохранена: ../saved_model.npz")
 
-    # ---- Графики ----
     plot_history(history)
 
 

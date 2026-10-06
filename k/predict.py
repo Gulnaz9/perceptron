@@ -42,8 +42,8 @@ def main():
     print()
 
     # Forward на валидации
-    y_pred_proba = network.forward(X_valid)         # (113, 2) вероятности
-    y_pred_labels = np.argmax(y_pred_proba, axis=1) # (113,) метки 0/1
+    y_pred_proba = network.forward(X_valid)         
+    y_pred_labels = np.argmax(y_pred_proba, axis=1) 
 
     # Метрики
     loss = cross_entropy_loss(y_pred_proba, y_valid)
