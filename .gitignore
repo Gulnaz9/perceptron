@@ -15,9 +15,6 @@ data_valid.csv
 normalization_params.csv
 saved_model.npz
 
-# Графики (перегенерируются скриптом)
-plots/
-
 # VS Code
 .vscode/
 
